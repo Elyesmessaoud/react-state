@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import "./App.css";
+import Profil from "./components/Profil";
+import image from "./nissan.jpg";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    person: {
+      fullname: "Elyes",
+      bio: "DrifT car",
+      imgSrc: image,
+      profession: "Developer",
+    },
+    show: false,
+  };
+
+  toggleVisibility = () => this.setState({ show: !this.state.show });
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Welcome</h1>
+        <button className="show-btn" onClick={this.toggleVisibility}>
+          {this.state.show ? "Hide" : "Show"} Counter
+        </button>
+        {/*this.state.isVisible === true ? <Counter /> : ''*/}
+        {this.state.show && <Profil person={this.state.person} />}
+      </div>
+    );
+  }
 }
 
 export default App;
